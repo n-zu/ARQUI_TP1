@@ -27,5 +27,5 @@ nginx-reload:
 .PHONY: nginx-reload
 
 ping:
-	curl -s http://localhost:5555/ping
+	curl -s http://localhost:5555/api/ping
 .PHONY: ping
