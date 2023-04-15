@@ -11,6 +11,12 @@ services:
         links:
             - node
 
+    node:
+        build:
+            dockerfile: Dockerfile
+            context: app
+
+
     graphite:
         image: graphiteapp/graphite-statsd:1.1.10-4
         volumes:
@@ -24,7 +30,7 @@ services:
     grafana:
         image: grafana/grafana:9.2.15
         ports:
-            - "80:3000"
+            - "8081:3000"
         volumes:
             - "grafana_config:/var/lib/grafana"
 
