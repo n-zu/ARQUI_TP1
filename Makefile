@@ -29,3 +29,7 @@ nginx-reload:
 ping:
 	curl -s http://localhost:5555/api/ping
 .PHONY: ping
+
+metar:
+	curl -s "http://localhost:5555/api/metar?station=${STATION}"
+.PHONY: metar
