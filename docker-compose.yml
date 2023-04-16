@@ -5,6 +5,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: app
+    environment:
+      - PORT=3000
     volumes:
       - ./app:/opt/app
 
