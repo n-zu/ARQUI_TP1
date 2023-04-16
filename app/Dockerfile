@@ -4,6 +4,8 @@ RUN mkdir /opt/app
 
 WORKDIR /opt/app
 
-COPY . .
+COPY package.json package-lock.json ./
 
-ENTRYPOINT ["node", "index.js"]
+RUN npm i
+
+ENTRYPOINT ["npm", "run", "prod"]
