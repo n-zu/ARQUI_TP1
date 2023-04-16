@@ -33,3 +33,11 @@ ping:
 metar:
 	curl -s "http://localhost:5555/api/metar?station=${STATION}"
 .PHONY: metar
+
+space:
+	curl -s "http://localhost:5555/api/space_news"
+.PHONY: space
+
+fact:
+	curl -s "http://localhost:5555/api/fact"
+.PHONY: fact
