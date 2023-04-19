@@ -7,6 +7,7 @@ services:
       context: app
     environment:
       - PORT=3000
+      - CACHE=true
     volumes:
       - ./app:/opt/app
     links:
