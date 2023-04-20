@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "artillery": "artillery",
-    "node": "artillery run root.yaml -e node",
+    "node": "artillery run root.yaml -e api",
+    "load": "artillery run load.yaml -e api",
     "scenario": "./run-scenario.sh"
   },
   "author": "",
