@@ -10,4 +10,4 @@ router.get('/space_news', async (req, res) => {
     res.status(200).send(titles);
 });
 
-module.exports = router
+module.exports = router;

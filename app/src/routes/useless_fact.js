@@ -8,4 +8,4 @@ router.get('/fact', async (req, res) => {
     res.status(200).send(fact.data.text);
 });
 
-module.exports = router
+module.exports = router;
