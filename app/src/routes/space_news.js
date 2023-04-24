@@ -1,12 +1,12 @@
 const express = require('express');
 const axios = require("axios");
-const {handleAxiosError} = require("../tools");
+const {handleError} = require("../tools");
 const router = express.Router();
 
 const SPACE_NEWS_BASE_URL = "https://api.spaceflightnewsapi.net/v3/articles";
 const ARTICLES_AMOUNT = 5;
 
-router.get('/space_news', async (req, res) => {
+router.get('/space_news', async (req, res, next) => {
     axios.get(SPACE_NEWS_BASE_URL,{
         params: {
             _limit: ARTICLES_AMOUNT
@@ -15,7 +15,7 @@ router.get('/space_news', async (req, res) => {
         const titles = response.data.map(article => article.title);
         res.status(200).send(titles);
     }).catch((error) => {
-        handleAxiosError(error, res);
+        handleError(error, res, next);
     });
 
 });

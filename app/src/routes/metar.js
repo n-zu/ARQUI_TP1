@@ -2,7 +2,7 @@ const express = require('express');
 const {XMLParser} = require("fast-xml-parser");
 const axios = require("axios");
 const {decode} = require("metar-decoder");
-const {handleAxiosError} = require("../tools");
+const {handleError} = require("../tools");
 const router = express.Router();
 
 const BASE_METAR_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam";
@@ -10,7 +10,7 @@ const BASE_METAR_URL = "https://www.aviationweather.gov/adds/dataserver_current/
  * @param req.query.station query param station.
  * @property response.data.METAR.raw_text metar api response
  */
-router.get('/metar', async (req, res) => {
+router.get('/metar', async (req, res, next) => {
     const parser = new XMLParser();
     const station = req.query.station;
 
@@ -27,19 +27,20 @@ router.get('/metar', async (req, res) => {
             }
         }).then((response) => {
             const parsed = parser.parse(response.data);
-            console.log(parsed);
             if(parsed.response.errors){
-                res.status(400).send(parsed.response.errors.error);
-                return -1;
+                const err = new Error(parsed.response.errors.error);
+                err.type = 'metar';
+                throw err;
             }
             if(!parsed.response.data.METAR){
-                res.status(400).send("Invalid station code \n");
-                return -1;
+                const err = new Error("Invalid station code");
+                err.type = 'metar';
+                throw err;
             }
             const info = decode(parsed.response.data.METAR.raw_text);
             res.status(200).send(info);
         }).catch((error) => {
-            handleAxiosError(error, res);
+            handleError(error, res, next);
         });
 
     }
