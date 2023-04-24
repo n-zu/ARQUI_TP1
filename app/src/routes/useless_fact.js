@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require("axios");
+const {handleAxiosError} = require("../tools");
 const router = express.Router();
 
 router.get('/fact', async (req, res) => {
@@ -7,17 +8,7 @@ router.get('/fact', async (req, res) => {
     ).then((response) => {
         res.status(200).send(response.data.text);
     }).catch((error) => {
-        if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-        } else if (error.request) {
-            console.log(error.request);
-        } else {
-            console.log('Error: ', error.message);
-        }
-        console.log(error.config);
-        res.status(500).send();
+        handleAxiosError(error, res);
     });
 
 });
