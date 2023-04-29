@@ -7,6 +7,7 @@
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
     "load": "artillery run load.yaml -e api",
+    "metar": "artillery run metar.yaml -e api",
     "scenario": "./run-scenario.sh"
   },
   "author": "",
