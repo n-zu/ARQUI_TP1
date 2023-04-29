@@ -1,5 +1,5 @@
 up:
-	docker-compose --compatibility up --build -d
+	docker-compose --compatibility up --build -d --scale node=3
 .PHONY: up
 
 down:
