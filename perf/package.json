@@ -6,8 +6,10 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
-    "load": "artillery run load.yaml -e api",
+    "load": "artillery run all.yaml -e api",
     "metar": "artillery run metar.yaml -e api",
+    "space_news": "artillery run space_news.yaml -e api",
+    "fact": "artillery run fact.yaml -e api",
     "scenario": "./run-scenario.sh"
   },
   "author": "",

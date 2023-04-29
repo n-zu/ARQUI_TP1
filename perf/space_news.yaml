@@ -11,29 +11,42 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Warm up
-      duration: 30
-      arrivalRate: 5
-    - name: Ramp up load
-      duration: 60
-      arrivalRate: 10
-      rampTo: 50
-    - name: Plain load
-      duration: 60
-      arrivalRate: 50
     - name: Ramp up load 2
-      duration: 60
-      arrivalRate: 50
-      rampTo: 100
+      duration: 30
+      arrivalRate: 30
+      rampTo: 60
     - name: Plain load 2
+      duration: 30
+      arrivalRate: 60
+    - name: Ramp up load 3
+      duration: 30
+      arrivalRate: 60
+      rampTo: 80
+    - name: Plain load 3
       duration: 60
-      arrivalRate: 50
+      arrivalRate: 80
+    - name: Ramp up load 4
+      duration: 30
+      arrivalRate: 80
+      rampTo: 100
+    - name: Plain load 4
+      duration: 60
+      arrivalRate: 100
+    # Hasta aca bien, luego del rampup empiezo a tener 500s
+    - name: Ramp up load 5
+      duration: 30
+      arrivalRate: 100
+      rampTo: 120
+    # Empiezan los 500s
+    - name: Plain load 5
+      duration: 60
+      arrivalRate: 120
     - name: Load Spike
       duration: 60
-      arrivalRate: 200
+      arrivalRate: 150
 
 scenarios:
-  - name: Space News Load
+  - name: Space News
     flow:
       - get:
           url: "/space_news"

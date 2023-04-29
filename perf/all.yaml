@@ -2,6 +2,11 @@ config:
   environments:
     api:
       target: "http://localhost:5555/api"
+      payload:
+        path: "stations.csv"
+        order: sequence
+        fields:
+          - "code"
       plugins:
         statsd:
           host: localhost
@@ -10,32 +15,40 @@ config:
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
+  # Mismo phases que metar.yaml
   phases:
-    - name: Ramp
-      duration: 30
-      arrivalRate: 1
-      rampTo: 5
-    - name: Plain
-      duration: 60
-      arrivalRate: 5
-    - name: Ramp2
+    - name: Warm up
       duration: 30
       arrivalRate: 5
-      rampTo: 10
-    - name: Plain2
+    - name: Ramp up load
       duration: 60
       arrivalRate: 10
-    - name: Unload
-      duration: 30
-      arrivalRate: 10
-      rampTo: 0
+      rampTo: 60
+    - name: Plain load
+      duration: 60
+      arrivalRate: 60
+    - name: Ramp up load 2
+      duration: 60
+      arrivalRate: 60
+      rampTo: 120
+    - name: Plain load 2
+      duration: 60
+      arrivalRate: 120
+    - name: Load Spike
+      duration: 60
+      arrivalRate: 240
 
+# Cada VU elige un scenario al azar
 scenarios:
-  - name: GET ALL
+  - name: GET Fact # Pun intended
     flow:
       - get:
-          url: "/ping"
-      - get:
           url: "/fact"
+  - name: GET Space News
+    flow:
       - get:
           url: "/space_news"
+  - name: GET Metar
+    flow:
+      - get:
+          url: "/metar?station={{ code }}"
