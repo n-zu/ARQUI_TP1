@@ -23,7 +23,8 @@ router.get('/metar', async (req, res, next) => {
                 requestType: "retrieve",
                 format: "xml",
                 stationString: station,
-                hoursBeforeNow: 1
+                hoursBeforeNow: 1,
+                mostRecent: true,
             }
         }).then((response) => {
             const parsed = parser.parse(response.data);
