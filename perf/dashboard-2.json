@@ -344,119 +344,6 @@
       }
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "c6vQ0HPVz"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 25,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "id": 7,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.2.15",
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "c6vQ0HPVz"
-          },
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.$server.latency.max, 'Max')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "c6vQ0HPVz"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "B",
-          "target": "alias(stats.gauges.$server.latency.median, 'Median')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "c6vQ0HPVz"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.$server.latency.min, 'Min')"
-        }
-      ],
-      "title": "Latency",
-      "type": "timeseries"
-    },
-    {
       "aliasColors": {
         "Memory": "#EAB839"
       },
@@ -473,7 +360,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 21
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -567,6 +454,208 @@
       "yaxis": {
         "align": false
       }
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "c6vQ0HPVz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.2.15",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.latency.max, 'Max')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.gauges.$server.latency.median, 'Median')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(stats.gauges.$server.latency.min, 'Min')"
+        }
+      ],
+      "title": "Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "c6vQ0HPVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.rps.count, 'Count')"
+        }
+      ],
+      "title": "RPS",
+      "type": "timeseries"
     }
   ],
   "refresh": "5s",
@@ -656,7 +745,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -687,6 +776,6 @@
   "timezone": "",
   "title": "Main dashboard",
   "uid": "arxIPammk",
-  "version": 6,
+  "version": 8,
   "weekStart": ""
 }
