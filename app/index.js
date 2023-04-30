@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const metar = require("./src/routes/metar");
 const space_news = require("./src/routes/space_news");
 const fact = require("./src/routes/useless_fact");
+const {errorLogger, errorResponder, failSafeHandler} = require("./src/middleware");
 const app = express();
 
 dotenv.config();
@@ -15,6 +16,10 @@ app.get("/ping", async (req, res) => {
 app.get("/metar", metar);
 app.get("/space_news", space_news);
 app.get("/fact", fact);
+
+app.use(errorLogger);
+app.use(errorResponder);
+app.use(failSafeHandler);
 
 // Start the server
 app.listen(process.env.PORT, () => {

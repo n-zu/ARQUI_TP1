@@ -1,11 +1,16 @@
 const express = require('express');
 const axios = require("axios");
+const {handleError} = require("../tools");
 const router = express.Router();
 
-router.get('/fact', async (req, res) => {
-    const fact = await axios.get(`https://uselessfacts.jsph.pl/api/v2/facts/random`);
+router.get('/fact', async (req, res, next) => {
+    axios.get(`https://uselessfacts.jsph.pl/api/v2/facts/random`
+    ).then((response) => {
+        res.status(200).send(response.data.text);
+    }).catch((error) => {
+       handleError(error, res, next);
+    });
 
-    res.status(200).send(fact.data.text);
 });
 
-module.exports = router
+module.exports = router;

@@ -21,7 +21,11 @@ if (CAN_CACHE) {
 }
 
 export async function fetchNews() {
-    const articles = await axios.get(`https://api.spaceflightnewsapi.net/v3/articles?_limit=${ARTICLES_AMOUNT}`);
+    const articles = await axios.get(SPACE_NEWS_BASE_URL,{
+        params: {
+            _limit: ARTICLES_AMOUNT
+        }
+    });
     return articles.data.map(article => article.title);
 }
 
