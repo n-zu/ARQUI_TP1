@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { redisClient } = require("./redis_client")
 
+const SPACE_NEWS_BASE_URL = "https://api.spaceflightnewsapi.net/v3/articles";
 const ARTICLES_AMOUNT = 5;
 const SPACE_NEWS_KEY = 'space_news';
 const SPACE_NEWS_TTL = 5;

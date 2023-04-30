@@ -2,6 +2,7 @@ const express = require('express');
 const {handleError} = require("../tools");
 const router = express.Router();
 const service = require('../services/space_news');
+const { CAN_CACHE } = require('../services/redis_client');
 
 
 router.get('/space_news', async (req, res, next) => {
