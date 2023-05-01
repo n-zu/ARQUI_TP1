@@ -1,0 +1,39 @@
+config:
+  environments:
+    api:
+      target: "http://localhost:5555/api"
+      payload:
+        path: "stations.csv"
+        order: sequence
+        fields:
+          - "code"
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Ramp up load
+      duration: 60
+      arrivalRate: 50
+      rampTo: 200
+    - name: Plain load
+      duration: 120
+      arrivalRate: 200
+    # Desde aca empiezo a recibir 403
+    - name: Ramp up load
+      duration: 60
+      arrivalRate: 200
+      rampTo: 250
+    - name: Plain load
+      duration: 120
+      arrivalRate: 250
+
+scenarios:
+  - name: Metar Spike
+    flow:
+      - get:
+          url: "/metar?station={{ code }}"
