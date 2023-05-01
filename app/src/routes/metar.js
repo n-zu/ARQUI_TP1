@@ -3,6 +3,7 @@ const {XMLParser} = require("fast-xml-parser");
 const axios = require("axios");
 const {decode} = require("metar-decoder");
 const {handleError} = require("../tools");
+const hotshotsClient = require('../hotshots_client');
 const router = express.Router();
 
 const BASE_METAR_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam";
@@ -11,6 +12,7 @@ const BASE_METAR_URL = "https://www.aviationweather.gov/adds/dataserver_current/
  * @property response.data.METAR.raw_text metar api response
  */
 router.get('/metar', async (req, res, next) => {
+    const start = process.hrtime();
     const parser = new XMLParser();
     const station = req.query.station;
 
@@ -43,8 +45,10 @@ router.get('/metar', async (req, res, next) => {
         }).catch((error) => {
             handleError(error, res, next);
         });
-
     }
+    const end = process.hrtime(start);
+    const duration = end[0] * 1e3 + end[1] * 1e-6;
+    hotshotsClient.gauge('metar', duration);
 });
 
 module.exports = router;
