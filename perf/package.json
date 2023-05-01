@@ -8,6 +8,7 @@
     "node": "artillery run root.yaml -e api",
     "ping": "artillery run ping.yaml -e api",
     "load": "artillery run load.yaml -e api",
+    "metar": "artillery run metar.yaml -e api",
     "scenario": "./run-scenario.sh"
   },
   "author": "",
