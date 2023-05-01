@@ -15,7 +15,7 @@ config:
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
-  # Mismo phases que metar.yaml
+  # Mismo phases que metar_load.yaml
   phases:
     - name: Warm up
       duration: 30

@@ -1,0 +1,50 @@
+config:
+  environments:
+    api:
+      target: "http://localhost:5555/api"
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Plain load 2
+      duration: 30
+      arrivalRate: 100
+    - name: Load Spike 2
+      duration: 60
+      arrivalRate: 250
+    - name: Plain load 3
+      duration: 30
+      arrivalRate: 150
+    - name: Load Spike 3
+      duration: 60
+      arrivalRate: 350
+    - name: Plain load 4
+      duration: 30
+      arrivalRate: 200
+    - name: Load Spike 4
+      duration: 60
+      arrivalRate: 450
+    - name: Plain load 5
+      duration: 30
+      arrivalRate: 250
+    - name: Load Spike 5
+      duration: 60
+      arrivalRate: 550
+    - name: Plain load 6
+      duration: 30
+      arrivalRate: 300
+    - name: Load Spike 6
+      duration: 60
+      arrivalRate: 650
+
+
+scenarios:
+  - name: Fact
+    flow:
+      - get:
+          url: "/fact"

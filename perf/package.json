@@ -6,10 +6,11 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
-    "load": "artillery run all.yaml -e api",
-    "metar": "artillery run metar.yaml -e api",
-    "space_news": "artillery run space_news.yaml -e api",
-    "fact": "artillery run fact.yaml -e api",
+    "metar_load": "artillery run -o metar_load.txt metar_load.yaml -e api",
+    "space_news_load": "artillery run -o space_news.txt space_news_load.yaml -e api",
+    "space_news_spike": "artillery run -o space_news_spike.txt space_news_spike.yaml -e api",
+    "fact_load": "artillery run -o fact.txt fact_load.yaml -e api",
+    "fact_spike": "artillery run -o fact_spike.txt fact_spike.yaml -e api",
     "scenario": "./run-scenario.sh"
   },
   "author": "",

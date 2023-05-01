@@ -46,7 +46,7 @@ config:
       arrivalRate: 150
 
 scenarios:
-  - name: Space News
+  - name: Space News Load
     flow:
       - get:
           url: "/space_news"
