@@ -24,16 +24,16 @@ config:
       duration: 120
       arrivalRate: 200
     # Desde aca empiezo a recibir 403
-    - name: Ramp up load
+    - name: Ramp up load 2
       duration: 60
       arrivalRate: 200
       rampTo: 250
-    - name: Plain load
+    - name: Plain load 2
       duration: 120
       arrivalRate: 250
 
 scenarios:
-  - name: Metar Spike
+  - name: Metar Endurance
     flow:
       - get:
           url: "/metar?station={{ code }}"

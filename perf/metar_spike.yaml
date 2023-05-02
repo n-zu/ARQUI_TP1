@@ -16,28 +16,22 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Plain load 2
+    - name: Plain load
       duration: 30
+      arrivalRate: 100
+    - name: Load Spike
+      duration: 60
+      arrivalRate: 200
+    - name: Plain load 2
+      duration: 60
       arrivalRate: 100
     - name: Load Spike 2
       duration: 60
-      arrivalRate: 150
+      arrivalRate: 250
     - name: Plain load 3
-      duration: 30
+      duration: 60
       arrivalRate: 100
     - name: Load Spike 3
-      duration: 60
-      arrivalRate: 200
-    - name: Plain load 4
-      duration: 60
-      arrivalRate: 100
-    - name: Load Spike 4
-      duration: 60
-      arrivalRate: 250
-    - name: Plain load 5
-      duration: 60
-      arrivalRate: 100
-    - name: Load Spike 5
       duration: 60
       arrivalRate: 300
 

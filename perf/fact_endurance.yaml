@@ -11,7 +11,7 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Ramp up load 2
+    - name: Ramp up load
       duration: 60
       arrivalRate: 50
       rampTo: 350
@@ -20,7 +20,7 @@ config:
       arrivalRate: 350
 
 scenarios:
-  - name: Fact
+  - name: Fact Endurance
     flow:
       - get:
           url: "/fact"

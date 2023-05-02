@@ -11,32 +11,32 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Ramp up load 2
+    - name: Ramp up load
       duration: 30
       arrivalRate: 50
       rampTo: 100
-    - name: Plain load 2
+    - name: Plain load
       duration: 30
       arrivalRate: 100
-    - name: Ramp up load 3
+    - name: Ramp up load 2
       duration: 30
       arrivalRate: 100
       rampTo: 150
-    - name: Plain load 3
+    - name: Plain load 2
       duration: 30
       arrivalRate: 150
-    - name: Ramp up load 4
+    - name: Ramp up load 3
       duration: 30
       arrivalRate: 150
       rampTo: 200
-    - name: Plain load 4
+    - name: Plain load 3
       duration: 30
       arrivalRate: 200
-    - name: Ramp up load 5
+    - name: Ramp up load 4
       duration: 30
       arrivalRate: 200
       rampTo: 250
-    - name: Plain load 5
+    - name: Plain load 4
       duration: 30
       arrivalRate: 250
     # Hasta aca bien, median 750ms
@@ -46,7 +46,7 @@ config:
       arrivalRate: 350
 
 scenarios:
-  - name: Fact
+  - name: Fact Load
     flow:
       - get:
           url: "/fact"

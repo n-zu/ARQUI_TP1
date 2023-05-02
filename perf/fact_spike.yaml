@@ -44,7 +44,7 @@ config:
 
 
 scenarios:
-  - name: Fact
+  - name: Fact Spike
     flow:
       - get:
           url: "/fact"

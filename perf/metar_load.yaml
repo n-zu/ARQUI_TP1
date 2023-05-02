@@ -51,7 +51,7 @@ config:
       arrivalRate: 350
 
 scenarios:
-  - name: Metar
+  - name: Metar Load
     flow:
       - get:
           url: "/metar?station={{ code }}"
