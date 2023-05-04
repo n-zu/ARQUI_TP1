@@ -6,6 +6,9 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
+    "ping": "artillery run ping.yaml -e api",
+    "load": "artillery run load.yaml -e api",
+    "metar": "artillery run metar.yaml -e api",
     "metar_load": "artillery run -o metar_load.txt metar_load.yaml -e api",
     "metar_spike": "artillery run -o metar_spike.txt metar_spike.yaml -e api",
     "metar_endurance": "artillery run -o metar_endurance.txt metar_endurance.yaml -e api",
