@@ -9,7 +9,7 @@ const metricsLogger = new MetricsLogger('space_news');
 
 router.get('/space_news', async (req, res) => {
     const articles = await metricsLogger.runAndMeasure(async () => {
-        return axios.get(`https://api.spaceflightnewsapi.net/v3/articles?_limit=${ARTICLES_AMOUNT}`);
+        return await axios.get(`https://api.spaceflightnewsapi.net/v3/articles?_limit=${ARTICLES_AMOUNT}`);
     });
 
     const titles = articles.data.map(article => article.title);
