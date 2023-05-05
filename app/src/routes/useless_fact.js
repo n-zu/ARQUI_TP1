@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require("axios");
 const {handleError} = require("../tools");
-const hotshotsClient = require('../hotshots_client');
 const router = express.Router();
 const {MetricsLogger} = require("../common/metrics_logger");
 

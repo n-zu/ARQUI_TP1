@@ -3,7 +3,6 @@ const {XMLParser} = require("fast-xml-parser");
 const axios = require("axios");
 const {decode} = require("metar-decoder");
 const {handleError} = require("../tools");
-const hotshotsClient = require('../hotshots_client');
 const router = express.Router();
 const {MetricsLogger} = require("../common/metrics_logger");
 
