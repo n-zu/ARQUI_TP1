@@ -29,7 +29,6 @@ const server = app.listen(process.env.PORT, () => {
 // Graceful shutdown
 process.on("SIGTERM", async () => {
     console.log("SIGTERM signal received: closing HTTP server");
-    await RedisSingleton.quit();
     server.close(() => {
         console.log("HTTP server closed");
         process.exit(0);
