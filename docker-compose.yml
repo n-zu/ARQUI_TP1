@@ -29,6 +29,7 @@ services:
       - node
 
   graphite:
+    container_name: graphite
     image: graphiteapp/graphite-statsd:1.1.10-4
     volumes:
       - ./statsd.config.js:/opt/statsd/config.js

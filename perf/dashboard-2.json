@@ -24,10 +24,120 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "c6vQ0HPVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.gauges.internal_api_fact, '/fact')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.gauges.internal_api_space_news, '/space_news')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(stats.gauges.internal_api_metar, '/metar')"
+        }
+      ],
+      "title": "Interal API Response Time",
+      "type": "timeseries"
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -35,7 +145,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "c6vQ0HPVz"
       },
       "fill": 7,
       "fillGradient": 0,
@@ -43,7 +153,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 9
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -81,7 +191,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refCount": 0,
           "refId": "B",
@@ -134,7 +244,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "c6vQ0HPVz"
       },
       "fill": 7,
       "fillGradient": 0,
@@ -142,7 +252,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 16
       },
       "height": "250",
       "hiddenSeries": false,
@@ -180,7 +290,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refId": "B",
           "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
@@ -189,7 +299,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refId": "A",
           "target": "alias(stats.gauges.$server.codes.200, 'Completed')"
@@ -197,7 +307,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refId": "C",
           "target": "alias(stats.gauges.$server.pendingRequests, 'Pending')"
@@ -205,7 +315,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refId": "D",
           "target": "alias(stats.gauges.$server.codes.429, 'Limited')"
@@ -248,7 +358,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "c6vQ0HPVz"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -256,7 +366,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 23
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -295,7 +405,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refCount": 0,
           "refId": "C",
@@ -304,7 +414,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "refCount": 0,
           "refId": "B",
@@ -344,100 +454,6 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "S6RTOHP4z"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "height": "250px",
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 250,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.2.15",
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "S6RTOHP4z"
-          },
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.*, '?')",
-          "textEditor": true
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Response time (Space News External API)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ms",
-          "label": "",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
       "aliasColors": {
         "Memory": "#EAB839"
       },
@@ -446,7 +462,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "c6vQ0HPVz"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -454,7 +470,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 30
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -499,7 +515,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "hide": false,
           "refCount": 0,
@@ -510,7 +526,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "c6vQ0HPVz"
           },
           "hide": false,
           "refCount": 0,
@@ -548,6 +564,208 @@
       "yaxis": {
         "align": false
       }
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "c6vQ0HPVz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 25,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.2.15",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.latency.max, 'Max')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.gauges.$server.latency.median, 'Median')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(stats.gauges.$server.latency.min, 'Min')"
+        }
+      ],
+      "title": "Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "c6vQ0HPVz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 46
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "c6vQ0HPVz"
+          },
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.rps.count, 'Count')"
+        }
+      ],
+      "title": "RPS",
+      "type": "timeseries"
     }
   ],
   "refresh": "5s",
@@ -637,7 +855,7 @@
     ]
   },
   "time": {
-    "from": "now-3m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -668,6 +886,6 @@
   "timezone": "",
   "title": "Main dashboard",
   "uid": "arxIPammk",
-  "version": 3,
+  "version": 10,
   "weekStart": ""
 }

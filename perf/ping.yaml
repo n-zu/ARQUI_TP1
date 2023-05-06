@@ -1,7 +1,7 @@
 config:
   environments:
     api:
-      target: "http://localhost:5555/api"
+      target: 'http://localhost:5555/api'
       plugins:
         statsd:
           host: localhost
@@ -18,24 +18,10 @@ config:
     - name: Plain
       duration: 60
       arrivalRate: 5
-    - name: Ramp2
-      duration: 30
-      arrivalRate: 5
-      rampTo: 10
-    - name: Plain2
-      duration: 60
-      arrivalRate: 10
-    - name: Unload
-      duration: 30
-      arrivalRate: 10
-      rampTo: 0
+    
 
 scenarios:
-  - name: GET ALL
+  - name: Ping (/ping)
     flow:
       - get:
-          url: "/ping"
-      - get:
-          url: "/fact"
-      - get:
-          url: "/space_news"
+          url: '/ping'
