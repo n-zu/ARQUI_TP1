@@ -1,44 +1,43 @@
 const axios = require('axios');
-const { redisClient } = require("./redis_client")
 const {MetricsLogger} = require("../common/metrics_logger");
+const {RedisCacheDecorator} = require("../common/redis_cache_decorator");
 
 const metricsLogger = new MetricsLogger('space_news');
 
+const CAN_CACHE = process.env.CACHE === 'true';
 const SPACE_NEWS_BASE_URL = "https://api.spaceflightnewsapi.net/v3/articles";
 const ARTICLES_AMOUNT = 5;
 const SPACE_NEWS_KEY = 'space_news';
 const SPACE_NEWS_TTL = 5;
 
-async function fetchNews() {
-    const articles = await metricsLogger.runAndMeasure(async () => {
-        return await axios.get(SPACE_NEWS_BASE_URL,{
-            params: {
-                _limit: ARTICLES_AMOUNT
-            }
+class SpaceNewsService {
+    constructor(url, articlesAmount) {
+        this.url = url;
+        this.articlesAmount = articlesAmount;
+    }
+
+    async get() {
+        const articles = await metricsLogger.runAndMeasure(async () => {
+            return await axios.get(this.url,{
+                params: {
+                    _limit: this.articlesAmount
+                }
+            });
         });
-    });
-    return articles.data.map(article => article.title);
+        return articles.data.map(article => article.title);
+    }
 }
 
-async function fetchFromCache() {
-    if (!redisClient) return await fetchNews();
+let spaceNewsService;
 
-    const titlesString = await redisClient.get(SPACE_NEWS_KEY);
-    if (titlesString !== null) {
-        return JSON.parse(titlesString);
-    } else {
-        const titles = await fetchNews();
-
-        await redisClient.set(SPACE_NEWS_KEY, JSON.stringify(titles), {
-            EX: SPACE_NEWS_TTL
-        });
-
-        return titles;
-    }
+if (CAN_CACHE) {
+    const spaceNewsServiceBase = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
+    spaceNewsService = new RedisCacheDecorator(spaceNewsServiceBase, SPACE_NEWS_KEY, SPACE_NEWS_TTL);
+} else {
+    spaceNewsService = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
 }
 
 
 module.exports = {
-    fetchNews,
-    fetchFromCache
+    spaceNewsService
 }

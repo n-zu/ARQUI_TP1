@@ -1,9 +1,7 @@
 const express = require('express');
 const {handleError} = require("../tools");
-const { CAN_CACHE } = require('../services/redis_client');
-const { fetchMetar, fetchMetarFromCache } = require('../services/metar');
+const {metarService} = require("../services/metar");
 const router = express.Router();
-const {MetricsLogger} = require("../common/metrics_logger");
 
 
 /**
@@ -17,12 +15,7 @@ router.get('/metar', async (req, res, next) => {
         res.status(400).send('Missing station query parameter');
     } else {
         try {
-            let info;
-            if (CAN_CACHE) {
-                info = await fetchMetarFromCache(station);
-            } else {
-                info = fetchMetar(station);
-            }
+            const info = await metarService.get({"station": station});
             res.status(200).send(info);
         } catch (error) {
             handleError(error, res, next);
