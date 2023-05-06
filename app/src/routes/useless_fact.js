@@ -1,19 +1,14 @@
 const express = require('express');
-const axios = require("axios");
 const {handleError} = require("../tools");
 const router = express.Router();
-const {MetricsLogger} = require("../common/metrics_logger");
+const {uselessFactService} = require("../services/useless_fact");
 
-const metricsLogger = new MetricsLogger('useless_fact');
-
-router.get('/fact', async (req, res) => {
+router.get('/fact', async (req, res, next) => {
     try {
-        const fact = await metricsLogger.runAndMeasure(async () => {
-            return await axios.get(`https://uselessfacts.jsph.pl/api/v2/facts/random`);
-        });
-        res.status(200).send(fact.data.text);
+        const fact = await uselessFactService.get();
+        res.status(200).send(fact);
     } catch (error) {
-        handleError(error, res, next); 
+        handleError(error, res, next);
     }
 });
 

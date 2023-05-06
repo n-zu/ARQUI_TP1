@@ -22,6 +22,14 @@ app.use(errorResponder);
 app.use(failSafeHandler);
 
 // Start the server
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log("Server started on port " + process.env.PORT);
+});
+
+// Graceful shutdown
+process.on("SIGTERM", async () => {
+  console.log("SIGTERM signal received: closing HTTP server");
+  server.close(() => {
+    console.log("HTTP server closed");
+  });
 });
