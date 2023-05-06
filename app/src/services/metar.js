@@ -2,14 +2,10 @@ const axios = require("axios");
 const {XMLParser} = require("fast-xml-parser");
 const {decode} = require("metar-decoder");
 const {MetricsLogger} = require("../common/metrics_logger");
-const {RedisCache} = require("../common/redis_cache");
 
 const metricsLogger = new MetricsLogger('metar');
 
-const CAN_CACHE = process.env.CACHE === 'true';
 const BASE_METAR_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam";
-const METAR_KEY = 'metar';
-const METAR_TTL = 5;
 
 class MetarService {
     constructor(url) {
@@ -51,14 +47,7 @@ class MetarService {
     }
 }
 
-let metarService;
-if (CAN_CACHE) {
-    const metarServiceBase = new MetarService(BASE_METAR_URL);
-    metarService = new RedisCache(metarServiceBase, METAR_KEY, METAR_TTL);
-} else {
-    metarService = new MetarService(BASE_METAR_URL);
-}
-
+const metarService = new MetarService(BASE_METAR_URL);
 
 module.exports = {
     metarService
