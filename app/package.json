@@ -17,6 +17,7 @@
     "fast-xml-parser": "^4.2.0",
     "hot-shots": "^10.0.0",
     "metar-decoder": "^1.0.3",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "redis": "^4.6.5"
   }
 }
