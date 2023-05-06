@@ -401,7 +401,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.space_news.avg, avg)",
+          "target": "alias(stats.gauges.external_api.space_news.avg, 'avg')",
           "textEditor": true
         },
         {
@@ -412,7 +412,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.space_news.max, avg)",
+          "target": "alias(stats.gauges.external_api.space_news.max, 'max')",
           "textEditor": true
         }
       ],
@@ -506,7 +506,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.metar.avg, avg)",
+          "target": "alias(stats.gauges.external_api.metar.avg, 'avg')",
           "textEditor": true
         },
         {
@@ -517,7 +517,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.metar.max, avg)",
+          "target": "alias(stats.gauges.external_api.metar.max, 'max')",
           "textEditor": true
         }
       ],
@@ -611,7 +611,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.useless_fact.avg, avg)",
+          "target": "alias(stats.gauges.external_api.useless_fact.avg, 'avg')",
           "textEditor": true
         },
         {
@@ -622,7 +622,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.useless_fact.max, avg)",
+          "target": "alias(stats.gauges.external_api.useless_fact.max, 'max')",
           "textEditor": true
         }
       ],
