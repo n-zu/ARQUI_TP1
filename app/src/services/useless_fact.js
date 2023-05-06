@@ -1,6 +1,6 @@
 const axios = require("axios");
 const {MetricsLogger} = require("../common/metrics_logger");
-const {ActiveLocalCacheDecorator} = require("../common/active_local_cache_decorator");
+const {ActiveLocalCache} = require("../common/active_local_cache");
 
 const CAN_CACHE = process.env.CACHE === 'true';
 const CACHE_SIZE = 5;
@@ -25,7 +25,7 @@ let uselessFactService;
 
 if (CAN_CACHE) {
     const uselessFactServiceBase = new UselessFactService(USELESS_FACT_URL);
-    uselessFactService = new ActiveLocalCacheDecorator(uselessFactServiceBase, CACHE_SIZE);
+    uselessFactService = new ActiveLocalCache(uselessFactServiceBase, CACHE_SIZE);
 } else {
     uselessFactService = new UselessFactService(USELESS_FACT_URL);
 }

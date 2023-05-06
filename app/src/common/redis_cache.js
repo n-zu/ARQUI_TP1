@@ -2,9 +2,9 @@ const {RedisSingleton} = require('./redis_singleton');
 
 const REDIS_URL = 'redis://redis:6379';
 
-class RedisCacheDecorator {
-    constructor(decorated, prefix, ttl) {
-        this.decorated = decorated;
+class RedisCache {
+    constructor(service, prefix, ttl) {
+        this.service = service;
         this.redis = new RedisSingleton(REDIS_URL);
         this.ttl = ttl;
         this.prefix = prefix;
@@ -28,7 +28,7 @@ class RedisCacheDecorator {
     }
 
     async getNew(redisKey, options) {
-        const value = await this.decorated.get(options);
+        const value = await this.service.get(options);
         await this.redis.set(redisKey, JSON.stringify(value), this.ttl);
         return value;
     }
@@ -44,6 +44,4 @@ class RedisCacheDecorator {
     }
 }
 
-module.exports = {
-    RedisCacheDecorator
-}
+module.exports = {RedisCache}

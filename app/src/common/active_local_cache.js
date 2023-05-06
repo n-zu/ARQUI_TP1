@@ -1,7 +1,7 @@
 
-class ActiveLocalCacheDecorator {
-    constructor(decorated, size) {
-        this.decorated = decorated;
+class ActiveLocalCache {
+    constructor(service, size) {
+        this.service = service;
         this.size = size;
         this.cachePromises = [];
         this.populateCache();
@@ -9,16 +9,16 @@ class ActiveLocalCacheDecorator {
 
     populateCache() {
         for (let i = 0; i < this.size; i++) {
-            this.cachePromises.push(this.decorated.get());
+            this.cachePromises.push(this.service.get());
         }
     }
 
     async get(options) {
-        const newPromise = this.decorated.get(options);
+        const newPromise = this.service.get(options);
         this.cachePromises.push(newPromise);
         const firstPromise = this.cachePromises.shift();
         return await firstPromise;
     }
 }
 
-module.exports = {ActiveLocalCacheDecorator};
+module.exports = {ActiveLocalCache};

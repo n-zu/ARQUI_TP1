@@ -2,7 +2,7 @@ const axios = require("axios");
 const {XMLParser} = require("fast-xml-parser");
 const {decode} = require("metar-decoder");
 const {MetricsLogger} = require("../common/metrics_logger");
-const {RedisCacheDecorator} = require("../common/redis_cache_decorator");
+const {RedisCache} = require("../common/redis_cache");
 
 const metricsLogger = new MetricsLogger('metar');
 
@@ -54,7 +54,7 @@ class MetarService {
 let metarService;
 if (CAN_CACHE) {
     const metarServiceBase = new MetarService(BASE_METAR_URL);
-    metarService = new RedisCacheDecorator(metarServiceBase, METAR_KEY, METAR_TTL);
+    metarService = new RedisCache(metarServiceBase, METAR_KEY, METAR_TTL);
 } else {
     metarService = new MetarService(BASE_METAR_URL);
 }

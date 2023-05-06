@@ -1,6 +1,6 @@
 const axios = require('axios');
 const {MetricsLogger} = require("../common/metrics_logger");
-const {RedisCacheDecorator} = require("../common/redis_cache_decorator");
+const {RedisCache} = require("../common/redis_cache");
 
 const metricsLogger = new MetricsLogger('space_news');
 
@@ -32,7 +32,7 @@ let spaceNewsService;
 
 if (CAN_CACHE) {
     const spaceNewsServiceBase = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
-    spaceNewsService = new RedisCacheDecorator(spaceNewsServiceBase, SPACE_NEWS_KEY, SPACE_NEWS_TTL);
+    spaceNewsService = new RedisCache(spaceNewsServiceBase, SPACE_NEWS_KEY, SPACE_NEWS_TTL);
 } else {
     spaceNewsService = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
 }
