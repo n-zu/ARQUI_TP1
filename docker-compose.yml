@@ -7,8 +7,14 @@ services:
       context: app
     environment:
       - PORT=3000
+      - CACHE=true
     volumes:
       - ./app:/opt/app
+    links:
+      - redis
+
+  redis:
+    image: redis:7
 
   nginx:
     image: nginx:1.23.4
@@ -23,6 +29,7 @@ services:
       - node
 
   graphite:
+    container_name: graphite
     image: graphiteapp/graphite-statsd:1.1.10-4
     volumes:
       - ./statsd.config.js:/opt/statsd/config.js
