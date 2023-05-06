@@ -2,7 +2,9 @@ const axios = require("axios");
 const {XMLParser} = require("fast-xml-parser");
 const {decode} = require("metar-decoder");
 const { redisClient } = require("./redis_client");
+const {MetricsLogger} = require("../common/metrics_logger");
 
+const metricsLogger = new MetricsLogger('metar');
 const BASE_METAR_URL = "https://www.aviationweather.gov/adds/dataserver_current/httpparam";
 const KEY_SUFFIX = 'metar_';
 const METAR_TTL = 5;
@@ -10,15 +12,17 @@ const METAR_TTL = 5;
 async function fetchMetar(station) {
     const parser = new XMLParser();
 
-    const response = await axios.get(BASE_METAR_URL, {
-        params: {
-            dataSource: "metars",
-            requestType: "retrieve",
-            format: "xml",
-            stationString: station,
-            hoursBeforeNow: 1,
-            mostRecent: true,
-        }
+    const response = await metricsLogger.runAndMeasure(async () => {
+        return await axios.get(BASE_METAR_URL, {
+            params: {
+                dataSource: "metars",
+                requestType: "retrieve",
+                format: "xml",
+                stationString: station,
+                hoursBeforeNow: 1,
+                mostRecent: true,
+            }
+        });
     });
     
     const parsed = parser.parse(response.data);

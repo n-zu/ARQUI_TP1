@@ -3,6 +3,8 @@ const {handleError} = require("../tools");
 const { CAN_CACHE } = require('../services/redis_client');
 const { fetchMetar, fetchMetarFromCache } = require('../services/metar');
 const router = express.Router();
+const {MetricsLogger} = require("../common/metrics_logger");
+
 
 /**
  * @param req.query.station query param station.
