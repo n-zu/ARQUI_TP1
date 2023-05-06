@@ -1,23 +1,22 @@
 const express = require('express');
-const axios = require("axios");
 const {handleError} = require("../tools");
 const router = express.Router();
+const service = require('../services/space_news');
+const { CAN_CACHE } = require('../services/redis_client');
 
-const SPACE_NEWS_BASE_URL = "https://api.spaceflightnewsapi.net/v3/articles";
-const ARTICLES_AMOUNT = 5;
 
 router.get('/space_news', async (req, res, next) => {
-    axios.get(SPACE_NEWS_BASE_URL,{
-        params: {
-            _limit: ARTICLES_AMOUNT
+    try {
+        let titles;
+        if (CAN_CACHE) {
+            titles = await service.fetchFromCache();
+        } else {
+            titles = await service.fetchNews();     
         }
-    }).then((response) => {
-        const titles = response.data.map(article => article.title);
         res.status(200).send(titles);
-    }).catch((error) => {
+    } catch (error) {
         handleError(error, res, next);
-    });
-
+    }
 });
 
 module.exports = router;
