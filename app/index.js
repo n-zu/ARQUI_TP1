@@ -4,7 +4,6 @@ const metar = require("./src/routes/metar");
 const space_news = require("./src/routes/space_news");
 const fact = require("./src/routes/useless_fact");
 const {errorLogger, errorResponder, failSafeHandler} = require("./src/middleware");
-const {RedisSingleton} = require("./src/common/redis_singleton");
 const app = express();
 
 dotenv.config();
