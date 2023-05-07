@@ -1,4 +1,35 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_GRAPHITE",
+      "label": "Graphite",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.2.15"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -24,7 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -35,7 +66,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 7,
       "fillGradient": 0,
@@ -81,12 +112,12 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "B",
           "target": "aliasByMetric(stats.gauges.$server.scenarioCounts.*)",
-          "textEditor": false
+          "textEditor": true
         }
       ],
       "thresholds": [],
@@ -122,6 +153,9 @@
     },
     {
       "aliasColors": {
+        "200 OK": "green",
+        "403 Forbidden": "orange",
+        "500 Internal Server Error": "yellow",
         "Completed": "#7EB26D",
         "Errored": "#BF1B00",
         "Errors count": "#BF1B00",
@@ -134,7 +168,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 7,
       "fillGradient": 0,
@@ -180,17 +214,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
-          },
-          "refCount": 0,
-          "refId": "B",
-          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "A",
@@ -200,7 +224,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
           "refCount": 0,
@@ -211,7 +235,17 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "D",
@@ -220,11 +254,22 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "C",
           "target": "alias(stats.gauges.$server.pendingRequests, 'Pending')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(stats.gauges.$server.codes.403, '403 Forbidden')",
+          "textEditor": true
         }
       ],
       "thresholds": [],
@@ -264,7 +309,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -311,7 +356,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "C",
@@ -320,7 +365,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "B",
@@ -360,13 +405,16 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -375,111 +423,6 @@
         "w": 24,
         "x": 0,
         "y": 21
-      },
-      "height": "250px",
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 250,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.2.15",
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "S6RTOHP4z"
-          },
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.external_api.space_news.avg, 'avg')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "S6RTOHP4z"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.external_api.space_news.max, 'max')",
-          "textEditor": true
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Response time (Space News External API)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ms",
-          "label": "",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "S6RTOHP4z"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 28
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -518,22 +461,22 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.metar.avg, 'avg')",
+          "target": "alias(stats.gauges.external_api.metar.avg, 'Average')",
           "textEditor": true
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.metar.max, 'max')",
+          "target": "alias(stats.gauges.external_api.metar.max, 'Upper')",
           "textEditor": true
         }
       ],
@@ -570,13 +513,125 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green",
+        "avg": "light-orange"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "S6RTOHP4z"
+        "uid": "${DS_GRAPHITE}"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "9.2.15",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(stats.gauges.external_api.space_news.avg, 'Average')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.gauges.external_api.space_news.max, 'Upper')",
+          "textEditor": true
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Response time (Space News External API)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": "",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -623,22 +678,22 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.useless_fact.avg, 'avg')",
+          "target": "alias(stats.gauges.external_api.useless_fact.avg, 'Average')",
           "textEditor": true
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "S6RTOHP4z"
+            "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.useless_fact.max, 'max')",
+          "target": "alias(stats.gauges.external_api.useless_fact.max, 'Upper')",
           "textEditor": true
         }
       ],
@@ -683,7 +738,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "artillery-api",
           "value": "artillery-api"
         },
@@ -705,7 +760,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1c23-tp-1_node_1",
           "value": "1c23-tp-1_node_1"
         },
@@ -763,7 +818,7 @@
     ]
   },
   "time": {
-    "from": "now-3m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -792,8 +847,8 @@
     ]
   },
   "timezone": "",
-  "title": "Dashboard Final",
-  "uid": "awdawdawdawdawdwadw",
+  "title": "Dashboard Final 2",
+  "uid": "e334343",
   "version": 1,
   "weekStart": ""
 }
