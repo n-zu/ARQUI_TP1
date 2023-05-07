@@ -154,6 +154,7 @@
     {
       "aliasColors": {
         "200 OK": "green",
+        "403 Forbidden": "orange",
         "500 Internal Server Error": "yellow",
         "Completed": "#7EB26D",
         "Errored": "#BF1B00",
@@ -216,16 +217,6 @@
             "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
-          "refId": "B",
-          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
-          },
-          "refCount": 0,
           "refId": "A",
           "target": "alias(stats.gauges.$server.codes.200, '200 OK')",
           "textEditor": true
@@ -247,6 +238,16 @@
             "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
+          "refId": "B",
+          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "refCount": 0,
           "refId": "D",
           "target": "alias(stats.gauges.$server.codes.429, 'Limited')"
         },
@@ -258,6 +259,17 @@
           "refCount": 0,
           "refId": "C",
           "target": "alias(stats.gauges.$server.pendingRequests, 'Pending')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(stats.gauges.$server.codes.403, '403 Forbidden')",
+          "textEditor": true
         }
       ],
       "thresholds": [],
@@ -395,115 +407,6 @@
     {
       "aliasColors": {
         "Average": "light-orange",
-        "Upper": "green",
-        "avg": "light-orange"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "${DS_GRAPHITE}"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "height": "250px",
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 250,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.2.15",
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
-          },
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.external_api.space_news.avg, 'Average')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.external_api.space_news.max, 'Upper')",
-          "textEditor": true
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Response time (Space News External API)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ms",
-          "label": "",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {
-        "Average": "light-orange",
         "Upper": "green"
       },
       "bars": false,
@@ -519,7 +422,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 21
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -580,6 +483,115 @@
       "thresholds": [],
       "timeRegions": [],
       "title": "Response time (Metar External API)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": "",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green",
+        "avg": "light-orange"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "${DS_GRAPHITE}"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "height": "250px",
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 250,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "9.2.15",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "alias(stats.gauges.external_api.space_news.avg, 'Average')",
+          "textEditor": true
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.gauges.external_api.space_news.max, 'Upper')",
+          "textEditor": true
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Response time (Space News External API)",
       "tooltip": {
         "shared": true,
         "sort": 0,
