@@ -115,3 +115,5 @@ node_modules
 
 .vscode
 .idea
+
+perf/*.txt
