@@ -23,7 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "artillery": "2.0.0-14",
+    "artillery": "^2.0.0-14",
     "artillery-plugin-statsd": "^2.2.1",
     "concurrently": "^8.0.1"
   }

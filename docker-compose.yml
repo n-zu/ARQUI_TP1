@@ -7,14 +7,8 @@ services:
       context: app
     environment:
       - PORT=3000
-      - CACHE=true
     volumes:
       - ./app:/opt/app
-    links:
-      - redis
-
-  redis:
-    image: redis:7
 
   nginx:
     image: nginx:1.23.4

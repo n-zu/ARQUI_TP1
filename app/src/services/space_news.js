@@ -1,14 +1,10 @@
 const axios = require('axios');
 const {MetricsLogger} = require("../common/metrics_logger");
-const {RedisCache} = require("../common/redis_cache");
 
 const metricsLogger = new MetricsLogger('space_news');
 
-const CAN_CACHE = process.env.CACHE === 'true';
 const SPACE_NEWS_BASE_URL = "https://api.spaceflightnewsapi.net/v3/articles";
 const ARTICLES_AMOUNT = 5;
-const SPACE_NEWS_KEY = 'space_news';
-const SPACE_NEWS_TTL = 5;
 
 class SpaceNewsService {
     constructor(url, articlesAmount) {
@@ -28,14 +24,7 @@ class SpaceNewsService {
     }
 }
 
-let spaceNewsService;
-
-if (CAN_CACHE) {
-    const spaceNewsServiceBase = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
-    spaceNewsService = new RedisCache(spaceNewsServiceBase, SPACE_NEWS_KEY, SPACE_NEWS_TTL);
-} else {
-    spaceNewsService = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
-}
+const spaceNewsService = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
 
 
 module.exports = {

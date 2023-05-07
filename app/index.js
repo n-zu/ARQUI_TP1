@@ -4,7 +4,6 @@ const metar = require("./src/routes/metar");
 const space_news = require("./src/routes/space_news");
 const fact = require("./src/routes/useless_fact");
 const {errorLogger, errorResponder, failSafeHandler} = require("./src/middleware");
-const {RedisSingleton} = require("./src/common/redis_singleton");
 const app = express();
 
 dotenv.config();
@@ -30,7 +29,6 @@ const server = app.listen(process.env.PORT, () => {
 // Graceful shutdown
 process.on("SIGTERM", async () => {
     console.log("SIGTERM signal received: closing HTTP server");
-    await RedisSingleton.quit();
     server.close(() => {
         console.log("HTTP server closed");
         process.exit(0);
