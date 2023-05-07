@@ -153,6 +153,8 @@
     },
     {
       "aliasColors": {
+        "200 OK": "green",
+        "500 Internal Server Error": "yellow",
         "Completed": "#7EB26D",
         "Errored": "#BF1B00",
         "Errors count": "#BF1B00",
@@ -391,7 +393,11 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green",
+        "avg": "light-orange"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -448,7 +454,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.space_news.avg, 'avg')",
+          "target": "alias(stats.gauges.external_api.space_news.avg, 'Average')",
           "textEditor": true
         },
         {
@@ -459,7 +465,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.space_news.max, 'max')",
+          "target": "alias(stats.gauges.external_api.space_news.max, 'Upper')",
           "textEditor": true
         }
       ],
@@ -496,7 +502,10 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -553,7 +562,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.metar.avg, 'avg')",
+          "target": "alias(stats.gauges.external_api.metar.avg, 'Average')",
           "textEditor": true
         },
         {
@@ -564,7 +573,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.metar.max, 'max')",
+          "target": "alias(stats.gauges.external_api.metar.max, 'Upper')",
           "textEditor": true
         }
       ],
@@ -601,7 +610,10 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Average": "light-orange",
+        "Upper": "green"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -658,7 +670,7 @@
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.external_api.useless_fact.avg, 'avg')",
+          "target": "alias(stats.gauges.external_api.useless_fact.avg, 'Average')",
           "textEditor": true
         },
         {
@@ -669,7 +681,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.external_api.useless_fact.max, 'max')",
+          "target": "alias(stats.gauges.external_api.useless_fact.max, 'Upper')",
           "textEditor": true
         }
       ],
@@ -794,7 +806,7 @@
     ]
   },
   "time": {
-    "from": "now-3m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
