@@ -18,7 +18,7 @@ class UselessFactService {
     }
 }
 
-let uselessFactService = new UselessFactService(USELESS_FACT_URL);
+const uselessFactService = new UselessFactService(USELESS_FACT_URL);
 
 module.exports = {
     uselessFactService

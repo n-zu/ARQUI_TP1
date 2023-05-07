@@ -24,7 +24,8 @@ class SpaceNewsService {
     }
 }
 
-let spaceNewsService = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
+const spaceNewsService = new SpaceNewsService(SPACE_NEWS_BASE_URL, ARTICLES_AMOUNT);
+
 
 module.exports = {
     spaceNewsService
