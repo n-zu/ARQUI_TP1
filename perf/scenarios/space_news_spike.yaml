@@ -6,7 +6,7 @@ config:
         statsd:
           host: localhost
           port: 8125
-          prefix: "artillery-api"
+          prefix: "artillery-api.space_news"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
