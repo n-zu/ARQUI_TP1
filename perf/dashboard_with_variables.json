@@ -114,9 +114,10 @@
             "type": "graphite",
             "uid": "${DS_GRAPHITE}"
           },
+          "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "aliasByMetric(stats.gauges.$server.scenarioCounts.*)",
+          "target": "aliasByMetric(stats.gauges.$server.*.scenarioCounts.*)",
           "textEditor": true
         }
       ],
@@ -153,9 +154,6 @@
     },
     {
       "aliasColors": {
-        "200 OK": "green",
-        "403 Forbidden": "orange",
-        "500 Internal Server Error": "yellow",
         "Completed": "#7EB26D",
         "Errored": "#BF1B00",
         "Errors count": "#BF1B00",
@@ -180,7 +178,7 @@
       },
       "height": "250",
       "hiddenSeries": false,
-      "id": 5,
+      "id": 14,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -216,10 +214,11 @@
             "type": "graphite",
             "uid": "${DS_GRAPHITE}"
           },
+          "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.$server.codes.200, '200 OK')",
-          "textEditor": true
+          "target": "aliasByMetric(stats.gauges.$server.$service.codes.*)",
+          "textEditor": false
         },
         {
           "datasource": {
@@ -227,38 +226,9 @@
             "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
-          "refCount": 0,
-          "refId": "E",
-          "target": "alias(stats.gauges.$server.codes.500, '500 Internal Server Error')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
-          },
           "refCount": 0,
           "refId": "B",
-          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
-          "textEditor": true
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
-          },
-          "refCount": 0,
-          "refId": "D",
-          "target": "alias(stats.gauges.$server.codes.429, 'Limited')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "${DS_GRAPHITE}"
-          },
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.$server.pendingRequests, 'Pending')"
+          "target": "alias(sumSeries(stats.gauges.$server.$service.errors.*), 'Errored')"
         },
         {
           "datasource": {
@@ -267,19 +237,19 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "F",
-          "target": "alias(stats.gauges.$server.codes.403, '403 Forbidden')",
-          "textEditor": true
+          "refId": "C",
+          "target": "alias(stats.gauges.$server.$service.pendingRequests, 'Pending')"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Requests state (stacked)",
+      "title": "Requests state ($service)",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transformations": [],
       "type": "graph",
       "xaxis": {
         "mode": "time",
@@ -359,17 +329,20 @@
             "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.$server.scenarioDuration.max, 'Upper')"
+          "refId": "B",
+          "target": "alias(stats.gauges.$server.$service.scenarioDuration.median, 'Median')",
+          "textEditor": true
         },
         {
           "datasource": {
             "type": "graphite",
             "uid": "${DS_GRAPHITE}"
           },
+          "hide": false,
           "refCount": 0,
-          "refId": "B",
-          "target": "alias(stats.gauges.$server.scenarioDuration.median, 'Median')"
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.$service.scenarioDuration.max, 'Upper')",
+          "textEditor": true
         }
       ],
       "thresholds": [],
@@ -405,10 +378,7 @@
       }
     },
     {
-      "aliasColors": {
-        "Average": "light-orange",
-        "Upper": "green"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -426,7 +396,7 @@
       },
       "height": "250px",
       "hiddenSeries": false,
-      "id": 7,
+      "id": 12,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -463,10 +433,11 @@
             "type": "graphite",
             "uid": "${DS_GRAPHITE}"
           },
+          "hide": false,
           "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.external_api.metar.avg, 'Average')",
-          "textEditor": true
+          "refId": "A",
+          "target": "alias(movingMedian(stats.gauges.external_api.$service.delay, '10s'), 'Median')",
+          "textEditor": false
         },
         {
           "datasource": {
@@ -475,14 +446,14 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.external_api.metar.max, 'Upper')",
-          "textEditor": true
+          "refId": "B",
+          "target": "alias(movingMax(stats.gauges.external_api.$service.delay, '10s'), 'Upper')",
+          "textEditor": false
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Response time (Metar External API)",
+      "title": "Response time ($service - External API)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -513,11 +484,7 @@
       }
     },
     {
-      "aliasColors": {
-        "Average": "light-orange",
-        "Upper": "green",
-        "avg": "light-orange"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -535,7 +502,7 @@
       },
       "height": "250px",
       "hiddenSeries": false,
-      "id": 6,
+      "id": 13,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -572,10 +539,10 @@
             "type": "graphite",
             "uid": "${DS_GRAPHITE}"
           },
+          "hide": false,
           "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.external_api.space_news.avg, 'Average')",
-          "textEditor": true
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.$service.latency.median, 'Median - Own')"
         },
         {
           "datasource": {
@@ -584,14 +551,14 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.external_api.space_news.max, 'Upper')",
-          "textEditor": true
+          "refId": "C",
+          "target": "alias(movingMedian(stats.gauges.external_api.$service.delay, '10s'), 'Median - External')",
+          "textEditor": false
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Response time (Space News External API)",
+      "title": "Response time ($service)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -622,10 +589,7 @@
       }
     },
     {
-      "aliasColors": {
-        "Average": "light-orange",
-        "Upper": "green"
-      },
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -643,7 +607,7 @@
       },
       "height": "250px",
       "hiddenSeries": false,
-      "id": 8,
+      "id": 9,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -680,10 +644,10 @@
             "type": "graphite",
             "uid": "${DS_GRAPHITE}"
           },
+          "hide": false,
           "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.external_api.useless_fact.avg, 'Average')",
-          "textEditor": true
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.$service.latency.median, 'Median')"
         },
         {
           "datasource": {
@@ -692,14 +656,14 @@
           },
           "hide": false,
           "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.external_api.useless_fact.max, 'Upper')",
-          "textEditor": true
+          "refId": "B",
+          "target": "alias(stats.gauges.$server.$service.latency.max, 'Upper')",
+          "textEditor": false
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Response time (Useless-Fact External API)",
+      "title": "Response time ($service - Own API)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -730,7 +694,7 @@
       }
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -738,7 +702,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "artillery-api",
           "value": "artillery-api"
         },
@@ -760,7 +724,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1c23-tp-1_node_1",
           "value": "1c23-tp-1_node_1"
         },
@@ -814,12 +778,48 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "metar"
+          ],
+          "value": [
+            "metar"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "service",
+        "options": [
+          {
+            "selected": false,
+            "text": "space_news",
+            "value": "space_news"
+          },
+          {
+            "selected": true,
+            "text": "metar",
+            "value": "metar"
+          },
+          {
+            "selected": false,
+            "text": "useless_fact",
+            "value": "useless_fact"
+          }
+        ],
+        "query": "space_news,metar,useless_fact",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "now-25m",
+    "to": "now-20m"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -847,8 +847,8 @@
     ]
   },
   "timezone": "",
-  "title": "Dashboard Final 2",
-  "uid": "e334343",
-  "version": 1,
+  "title": "Dashboard Final 3",
+  "uid": "e3343434",
+  "version": 2,
   "weekStart": ""
 }
