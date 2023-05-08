@@ -9,7 +9,7 @@
     "metar_load": "artillery run -o metar_load.txt scenarios/metar_load.yaml -e api",
     "metar_spike": "artillery run -o metar_spike.txt scenarios/metar_spike.yaml -e api",
     "metar_endurance": "artillery run -o metar_endurance.txt scenarios/metar_endurance.yaml -e api",
-    "space_news_load": "artillery run -o space_news.txt scenarios/space_news_load.yaml -e api",
+    "space_news_load": "artillery run -o space_news_load.txt scenarios/space_news_load.yaml -e api",
     "space_news_spike": "artillery run -o space_news_spike.txt scenarios/space_news_spike.yaml -e api",
     "space_news_endurance": "artillery run -o space_news_endurance.txt scenarios/space_news_endurance.yaml -e api",
     "fact_load": "artillery run -o fact_load.txt scenarios/fact_load.yaml -e api",
