@@ -1,4 +1,4 @@
-up:
+up: down
 	docker-compose --compatibility up --build -d
 .PHONY: up
 

@@ -6,39 +6,32 @@ config:
         statsd:
           host: localhost
           port: 8125
-          prefix: "artillery-api"
+          prefix: "artillery-api.space_news"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Ramp up load 2
-      duration: 30
-      arrivalRate: 30
-      rampTo: 60
-    - name: Plain load 2
-      duration: 30
-      arrivalRate: 60
-    - name: Ramp up load 3
+    - name: Ramp up load
       duration: 30
       arrivalRate: 60
       rampTo: 80
-    - name: Plain load 3
-      duration: 60
+    - name: Plain load
+      duration: 30
       arrivalRate: 80
-    - name: Ramp up load 4
+    - name: Ramp up load 2
       duration: 30
       arrivalRate: 80
       rampTo: 100
-    - name: Plain load 4
+    - name: Plain load 2
       duration: 60
       arrivalRate: 100
     # Hasta aca bien, luego del rampup empiezo a tener 500s
-    - name: Ramp up load 5
+    - name: Ramp up load 3
       duration: 30
       arrivalRate: 100
       rampTo: 120
     # Empiezan los 500s
-    - name: Plain load 5
+    - name: Plain load 3
       duration: 60
       arrivalRate: 120
     - name: Load Spike
