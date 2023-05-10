@@ -3,7 +3,7 @@ const {MetricsLogger} = require("../common/metrics_logger");
 const {ActiveLocalCache} = require("../common/active_local_cache");
 
 const CAN_CACHE = process.env.CACHE === 'true';
-const CACHE_SIZE = 5;
+const CACHE_SIZE = 100;
 const USELESS_FACT_URL = 'https://uselessfacts.jsph.pl/api/v2/facts/random';
 
 const metricsLogger = new MetricsLogger('useless_fact');

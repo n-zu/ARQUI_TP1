@@ -4,7 +4,6 @@ class ActiveLocalCache {
         this.service = service;
         this.size = size;
         this.cachePromises = [];
-        this.populateCache();
     }
 
     populateCache() {
@@ -14,6 +13,9 @@ class ActiveLocalCache {
     }
 
     async get(options) {
+        if (this.cachePromises.length === 0) {
+            this.populateCache();
+        }
         const newPromise = this.service.get(options);
         this.cachePromises.push(newPromise);
         const firstPromise = this.cachePromises.shift();
