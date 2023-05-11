@@ -1,2 +1,2 @@
 #!/bin/sh
-npm run artillery -- run $1.yaml -e $2
+npm run artillery -- run scenarios/$1.yaml -e $2
